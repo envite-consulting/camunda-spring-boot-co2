@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_00l8fxr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.8.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="Process_Fibonacci" name="Fibonacci" isExecutable="true">
+    <bpmn:sequenceFlow id="Flow_14x5bj1" sourceRef="StartEvent_1" targetRef="Activity_15jmjbi" />
+    <bpmn:endEvent id="Event_0brfv6t" name="Calculated Fibonacci">
+      <bpmn:incoming>Flow_1kam6ux</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_1" name="Every 30 seconds">
+      <bpmn:outgoing>Flow_14x5bj1</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_03ckwis">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT30S</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_0luz82z" name="Check Result">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="fibonacciIteratively" label="Iterativ" type="long" />
+          <camunda:formField id="fibonacciRecursively" label="Rekursiv" type="long" />
+          <camunda:formField id="approved" label="Bestätigen?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0miqhkw</bpmn:incoming>
+      <bpmn:outgoing>Flow_04f0ibt</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_04f0ibt" sourceRef="Activity_0luz82z" targetRef="Gateway_1hk7s1z" />
+    <bpmn:boundaryEvent id="Event_0jep41z" name="After 5 seconds" attachedToRef="Activity_0luz82z">
+      <bpmn:outgoing>Flow_0mcfolh</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_05mfdr2">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:serviceTask id="Activity_04x2qa8" name="Calculate Fibonacci(1000) iteratively" camunda:delegateExpression="${fibonacciIteratively}">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="FibonacciIterative" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_08mud2g</bpmn:incoming>
+      <bpmn:outgoing>Flow_0miqhkw</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0miqhkw" sourceRef="Activity_04x2qa8" targetRef="Activity_0luz82z" />
+    <bpmn:serviceTask id="Activity_15jmjbi" name="Calculate Fibonacci(1000) rekursively" camunda:delegateExpression="${fibonacciRecursively}">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="FibonacciRecursive" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14x5bj1</bpmn:incoming>
+      <bpmn:outgoing>Flow_08mud2g</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_08mud2g" sourceRef="Activity_15jmjbi" targetRef="Activity_04x2qa8" />
+    <bpmn:sequenceFlow id="Flow_0mcfolh" sourceRef="Event_0jep41z" targetRef="Gateway_1hk7s1z" />
+    <bpmn:exclusiveGateway id="Gateway_1hk7s1z">
+      <bpmn:incoming>Flow_04f0ibt</bpmn:incoming>
+      <bpmn:incoming>Flow_0mcfolh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kam6ux</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1kam6ux" sourceRef="Gateway_1hk7s1z" targetRef="Event_0brfv6t" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_Fibonacci">
+      <bpmndi:BPMNShape id="Event_0brfv6t_di" bpmnElement="Event_0brfv6t">
+        <dc:Bounds x="992" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="984" y="61.5" width="52" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0y1jm0y_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="153" y="142" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0n2i5lu_di" bpmnElement="Activity_0luz82z">
+        <dc:Bounds x="650" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0odnvbj_di" bpmnElement="Activity_04x2qa8">
+        <dc:Bounds x="510" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bvmyle_di" bpmnElement="Activity_15jmjbi">
+        <dc:Bounds x="370" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1hk7s1z_di" bpmnElement="Gateway_1hk7s1z" isMarkerVisible="true">
+        <dc:Bounds x="885" y="92" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0mtbgo7_di" bpmnElement="Event_0jep41z">
+        <dc:Bounds x="732" y="139" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="712" y="182" width="76" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_14x5bj1_di" bpmnElement="Flow_14x5bj1">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="370" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04f0ibt_di" bpmnElement="Flow_04f0ibt">
+        <di:waypoint x="750" y="117" />
+        <di:waypoint x="885" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0miqhkw_di" bpmnElement="Flow_0miqhkw">
+        <di:waypoint x="610" y="117" />
+        <di:waypoint x="650" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_08mud2g_di" bpmnElement="Flow_08mud2g">
+        <di:waypoint x="470" y="117" />
+        <di:waypoint x="510" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mcfolh_di" bpmnElement="Flow_0mcfolh">
+        <di:waypoint x="768" y="157" />
+        <di:waypoint x="910" y="157" />
+        <di:waypoint x="910" y="142" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kam6ux_di" bpmnElement="Flow_1kam6ux">
+        <di:waypoint x="935" y="117" />
+        <di:waypoint x="992" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
