@@ -22,6 +22,7 @@ public class FibonacciApplication {
   @EventListener
   public void processPostDeploy(PostDeployEvent event) {
     runtimeService.startProcessInstanceByKey("Process_Fibonacci");
+    System.exit(0);
   }
 
 }

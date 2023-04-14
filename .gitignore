@@ -17,3 +17,7 @@ hs_err_pid*
 .classpath
 .settings
 .project
+
+# JoularJX
+
+/joularjx-result/

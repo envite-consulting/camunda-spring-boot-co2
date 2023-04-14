@@ -1,0 +1,17 @@
+14.04.2023, Elenas Laptop as hardware
+
+iterative runs once with Integer.MAX_INT as parameter
+recursive runs once with 40 as parameter
+
+iterative - 877ms ; 958ms ; 867ms ; 858ms ; 864ms
+recursive - 551ms ; 558ms ; 566ms ; 567ms ; 573ms
+
+iterative - no value ; 0.4214J ; 1.1831J ; no value ; no value
+recursive - 1.7734J ; 1.7909J ; 1.0180J ; 2.1996J ; 0.8902J
+
+Program consumes 40,96J ; 43,63J ; 43,99J ; 41,85J ; 42,42J
+
+Observations:
+  - total energy consumption stays roughly the same
+  - individual energy values for iterative and recursive methods vary a lot
+  - time for iterative and recursive stays roughly the same

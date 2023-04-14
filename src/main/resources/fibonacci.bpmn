@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_00l8fxr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.8.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_00l8fxr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.5.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
   <bpmn:process id="Process_Fibonacci" name="Fibonacci" isExecutable="true">
     <bpmn:sequenceFlow id="Flow_14x5bj1" sourceRef="StartEvent_1" targetRef="Activity_15jmjbi" />
     <bpmn:endEvent id="Event_0brfv6t" name="Calculated Fibonacci">
       <bpmn:incoming>Flow_1kam6ux</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:startEvent id="StartEvent_1" name="Every 30 seconds">
-      <bpmn:outgoing>Flow_14x5bj1</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_03ckwis">
-        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT30S</bpmn:timeCycle>
-      </bpmn:timerEventDefinition>
-    </bpmn:startEvent>
     <bpmn:userTask id="Activity_0luz82z" name="Check Result">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -52,6 +46,9 @@
       <bpmn:outgoing>Flow_1kam6ux</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1kam6ux" sourceRef="Gateway_1hk7s1z" targetRef="Event_0brfv6t" />
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_14x5bj1</bpmn:outgoing>
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_Fibonacci">
@@ -59,12 +56,6 @@
         <dc:Bounds x="992" y="99" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="984" y="61.5" width="52" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0y1jm0y_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="179" y="99" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="153" y="142" width="88" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0n2i5lu_di" bpmnElement="Activity_0luz82z">
@@ -80,6 +71,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1hk7s1z_di" bpmnElement="Gateway_1hk7s1z" isMarkerVisible="true">
         <dc:Bounds x="885" y="92" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1mh3o22_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="153" y="142" width="88" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0mtbgo7_di" bpmnElement="Event_0jep41z">
         <dc:Bounds x="732" y="139" width="36" height="36" />
