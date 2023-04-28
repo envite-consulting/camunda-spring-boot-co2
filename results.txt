@@ -15,3 +15,34 @@ Observations:
   - total energy consumption stays roughly the same
   - individual energy values for iterative and recursive methods vary a lot
   - time for iterative and recursive stays roughly the same
+
+28.04.2023, Elenas Laptop as hardware
+
+Same params as above
+
+iterative - 643ms ; 560ms ; 558ms
+recursive - 390ms ; 335ms ; 367ms
+
+iterative - no value ; 7,2354J ; no value
+recursive - no value ; 5,3060J ; no value
+
+Program consumes: 73,03J ; 66,3J ; 100,8J
+
+Observation:
+  - Way higher consumption than two weeks before without any changes
+    => Are the numbers reliable in any way?
+  - Shorter execution times of individual methods
+  - iterative still needs longer than recursive (the input number is higher for iterative)
+  - Energy values vary a lot
+
+
+Additional CPU stressing (using CPU-Z)
+
+iterative - ; ; 952ms
+recursive - ; ; 644ms
+
+Program consumes: First two measurements between 45J und 50J ; 48,47
+
+Observation:
+  - More reliable total consumption values when the cpu is stressed.
+  - The energy values are similar to two weeks ago.
