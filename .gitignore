@@ -1,23 +1,16 @@
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-# JetBrains Files
+Thumbs.db
+.DS_Store
+.gradle
+build/
+target/
+out/
+.micronaut/
 .idea
 *.iml
-
-/target/
-
-.classpath
-.settings
+*.ipr
+*.iws
 .project
-
-# JoularJX
-
+.settings
+.classpath
+.factorypath
 /joularjx-result/

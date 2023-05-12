@@ -46,3 +46,21 @@ Program consumes: First two measurements between 45J und 50J ; 48,47
 Observation:
   - More reliable total consumption values when the cpu is stressed.
   - The energy values are similar to two weeks ago.
+
+
+12.05.2023 Hennings Laptop as Hardware
+
+Additional CPU stressing (using CPU-Z)
+
+iterative - 2373ms ; 2467ms ; 2471ms
+recursive - 615ms ; 588ms ; 598ms
+
+iterative - 3.7090J ; 3.8481J ; 3.0854J
+recursive - 1.2663J ; 1.2625J ; 1.6841J
+
+Program consumes: 25,16J ; 23,67J ; 23,58J
+
+Iterative Fibonacci limited to 10sec
+
+Method Consumes: 118.1775J ; 52.6130J ; 58.4526J ; 88.4488J ; 104.4330J ; 102.5077J
+Program consumes: 181,44J ; 96,77J ; 104,28J ; 135,22J ; 157,96J ; 163,77J
